@@ -15,7 +15,7 @@ class MovieMapper {
       popularity: movieDB.popularity,
       posterPath: (movieDB.posterPath != '')
           ? 'https://image.tmdb.org/t/p/w500/${movieDB.posterPath}'
-          : 'https://cdn.iconscout.com/icon/free/png-256/free-no-image-1771002-1505134.png',
+          : 'no-poster',
       releaseDate: movieDB.releaseDate,
       title: movieDB.title,
       video: movieDB.video,
