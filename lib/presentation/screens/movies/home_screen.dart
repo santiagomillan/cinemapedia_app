@@ -7,9 +7,6 @@ class HomeSceen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Text(Enviroment.movieDbKey),
-    ));
+    return Scaffold(body: Placeholder());
   }
 }
