@@ -1,7 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:cinemapedia/config/constants/enviroment.dart';
 import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:dio/dio.dart';
 
 class MobiedbDatasource extends MoviesDatasource {
   final dio = Dio(BaseOptions(
