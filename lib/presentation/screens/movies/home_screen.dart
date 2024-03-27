@@ -1,4 +1,4 @@
-import 'package:cinemapedia/config/constants/enviroment.dart';
+// import 'package:cinemapedia/config/constants/enviroment.dart';
 import 'package:flutter/material.dart';
 
 class HomeSceen extends StatelessWidget {
