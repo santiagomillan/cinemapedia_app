@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MovieHorizontalListView extends StatelessWidget {
   final List<Movie> movies;
@@ -115,18 +117,21 @@ class _Slide extends StatelessWidget {
             style: textStyle.titleSmall,
           ),
         ),
-        Row(
-          children: [
-            const Icon(Icons.star_half_outlined, color: Colors.yellow),
-            const SizedBox(width: 3),
-            Text('${movie.voteAverage}',
-                style: textStyle.bodyMedium
-                    ?.copyWith(color: Colors.yellow.shade800)),
-            const SizedBox(width: 10),
-            Text('${movie.popularity}', style: textStyle.bodySmall),
-
-            // style: textStyle.subtitleSmall,
-          ],
+        SizedBox(
+          width: 150,
+          child: Row(
+            children: [
+              const Icon(Icons.star_half_outlined, color: Colors.yellow),
+              const SizedBox(width: 3),
+              Text('${movie.voteAverage}',
+                  style: textStyle.bodyMedium
+                      ?.copyWith(color: Colors.yellow.shade800)),
+              // const SizedBox(width: 10),
+              const Spacer(),
+              Text(HumanFormat.number(movie.popularity),
+                  style: textStyle.bodySmall),
+            ],
+          ),
         )
       ]),
     );
