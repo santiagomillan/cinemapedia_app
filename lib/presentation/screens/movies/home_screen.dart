@@ -29,6 +29,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     super.initState();
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
     ref.read(popularMoviesProvider.notifier).loadNextPage();
+
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
+    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
   }
 
   @override
@@ -36,6 +39,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
+    final upcomingMovies = ref.watch(upcomingMoviesProvider);
 
     // if (slideShowMovies.isEmpty)
     //   return const Center(child: CircularProgressIndicator());
@@ -64,11 +69,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
               },
             ),
             MovieHorizontalListView(
-              movies: nowPlayingMovies,
+              movies: upcomingMovies,
               title: 'Proximamente',
               subTitle: 'En este mes',
               loadNextPage: () {
-                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                ref.read(upcomingMoviesProvider.notifier).loadNextPage();
               },
             ),
             MovieHorizontalListView(
@@ -80,11 +85,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
               },
             ),
             MovieHorizontalListView(
-              movies: nowPlayingMovies,
+              movies: topRatedMovies,
               title: 'Mejor calificadas',
               subTitle: 'Desde siempre',
               loadNextPage: () {
-                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                ref.read(topRatedMoviesProvider.notifier).loadNextPage();
               },
             ),
             const SizedBox(height: 10),
