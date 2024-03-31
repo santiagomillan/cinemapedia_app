@@ -38,27 +38,57 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     // if (slideShowMovies.isEmpty)
     //   return const Center(child: CircularProgressIndicator());
 
-    return Column(
-      children: [
-        const CustomAppbar(),
-        MoviesSlideshow(movies: slideShowMovies),
-        MovieHorizontalListView(
-          movies: nowPlayingMovies,
-          title: 'En cartelera',
-          subTitle: 'Lunes 20',
-          loadNextPage: () {
-            ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-          },
+    return CustomScrollView(slivers: [
+      const SliverAppBar(
+        floating: true,
+        flexibleSpace: FlexibleSpaceBar(
+          title: CustomAppbar(),
+          titlePadding: EdgeInsets.zero,
+          centerTitle: false,
         ),
-        MovieHorizontalListView(
-          movies: nowPlayingMovies,
-          title: 'En cartelera',
-          subTitle: 'Lunes 20',
-          loadNextPage: () {
-            ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-          },
-        ),
-      ],
-    );
+      ),
+      SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+        return Column(
+          children: [
+            // const CustomAppbar(),
+            MoviesSlideshow(movies: slideShowMovies),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'En cartelera',
+              subTitle: 'Lunes 20',
+              loadNextPage: () {
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+              },
+            ),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'Proximamente',
+              subTitle: 'En este mes',
+              loadNextPage: () {
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+              },
+            ),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'Populares',
+              // subTitle: 'En este mes',
+              loadNextPage: () {
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+              },
+            ),
+            MovieHorizontalListView(
+              movies: nowPlayingMovies,
+              title: 'Mejor calificadas',
+              subTitle: 'Desde siempre',
+              loadNextPage: () {
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+              },
+            ),
+            const SizedBox(height: 10),
+          ],
+        );
+      }, childCount: 1))
+    ]);
   }
 }
